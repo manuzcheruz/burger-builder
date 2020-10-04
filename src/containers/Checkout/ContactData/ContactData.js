@@ -19,13 +19,25 @@ class ContactData extends Component {
     orderHandler = (event) => {
         event.preventDefault();
         this.setState({loading: true});
-        let x = JSON.stringify(this.props.ingredients);
-        console.log(typeof x);
+        // console.log(this.props.ingredients);
+        // let x = JSON.stringify(this.props.ingredients);
+        // console.log(x);
+
         // console.log(this.props);
         // alert('You have accepted to continue with your purchase!');
+
+        // const ingredients = {...[this.props.ingredients]}
+
+        const {price, ingredients} = this.props;
+
         const order = {
-            ingredients: x,
-            price: this.props.price,
+            ingredients,
+            // ingredients: [{'bacon': 1}, {'cheese': 1}, {'meat': 1}, {'salad': 0}],
+            // ingredients : {
+            //     'bacon':10,
+            //     'salad':2
+            // },
+            price,
             customer: {
                 name: 'Manuz',
                 address: {
