@@ -2,7 +2,6 @@ import React from 'react';
 
 import Burger from '../../Burger/Burger';
 import Button from '../../UI/Button/Button';
-
 import classes from './CheckoutSummary.css';
 
 const checkoutSummary = (props) => {
@@ -17,7 +16,7 @@ const checkoutSummary = (props) => {
                 clicked={props.checkoutCancelled}>CANCEL</Button>
             <Button 
                 btnType="Success"
-                clicked={props.checkoutContinue}>CONTINUE</Button>
+                clicked={props.checkoutContinued}>CONTINUE</Button>
         </div>
     );
 }
