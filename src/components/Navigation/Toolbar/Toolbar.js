@@ -12,7 +12,7 @@ const toolbar = ( props ) => (
             <Logo />
         </div>
         <nav className={classes.DesktopOnly}>
-            <NavigationItems />
+            <NavigationItems auth={props.authenticated}/>
         </nav>
     </header>
 );

@@ -22,6 +22,20 @@ export const authStart = () => {
     }
 }
 
+export const logout = () => {
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    }
+}
+
+export const authLogout = (expiryTime) => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(logout());
+        }, expiryTime * 1000);
+    }
+}
+
 export const auth = (email, password, isSignUp) => {
     return dispatch => {
         dispatch(authStart());
@@ -38,9 +52,17 @@ export const auth = (email, password, isSignUp) => {
             .then(response => {
                 console.log(response.data)
                 dispatch(authSuccess(response.data.localId, response.data.idToken))
+                dispatch(authLogout(response.data.expiresIn))
             })
             .catch(error => {
-                dispatch(authFail(error))
+                dispatch(authFail(error.response.data.error))
             })
+    }
+}
+
+export const setAuthRedirectPath = path => {
+    return {
+        type: actionTypes.SET_AUTH_REDIRECT_PATH,
+        path: path
     }
 }
