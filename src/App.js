@@ -30,12 +30,14 @@ class App extends Component {
       </Switch>
     );
     if (this.props.isAuthenticated) {
+      // console.log(this.props);
       routes = (
           <Switch>
-            <Route path="/checkout" render={() => <Suspense fallback={<h1>Loading...</h1>}><LazyCheckout /></Suspense>} />
-            <Route path="/orders" render={() => <Suspense fallback={<h1>Loading...</h1>}><LazyOrders /></Suspense>} />
-            <Route path="/auth" render={() => <Suspense fallback={<h1>Loading...</h1>}><LazyAuth /></Suspense>} />
-            <Route path="/logout" render={() => <Suspense fallback={<h1>Loading...</h1>}><LazyLogout /></Suspense>} />
+            {/* <Route path="/checkout" exact component={Checkout} /> */}
+            <Route path="/checkout" render={(props) => <Suspense fallback={<h1>Loading...</h1>}><LazyCheckout {...props} /></Suspense>} />
+            <Route path="/orders" render={(props) => <Suspense fallback={<h1>Loading...</h1>}><LazyOrders {...props} /></Suspense>} />
+            <Route path="/auth" render={(props) => <Suspense fallback={<h1>Loading...</h1>}><LazyAuth {...props} /></Suspense>} />
+            <Route path="/logout" render={(props) => <Suspense fallback={<h1>Loading...</h1>}><LazyLogout {...props} /></Suspense>} />
             <Route path="/" exact component={BurgerBuilder} />
             <Redirect to="/" />
           </Switch>
